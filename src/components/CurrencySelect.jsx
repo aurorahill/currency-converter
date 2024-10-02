@@ -1,30 +1,67 @@
 import { useState, useEffect } from 'react';
 
+const currencyCodes = [
+  'AUD',
+  'BGN',
+  'BRL',
+  'CAD',
+  'CHF',
+  'CLP',
+  'CNY',
+  'CZK',
+  'DKK',
+  'EUR',
+  'GBP',
+  'HKD',
+  'HUF',
+  'IDR',
+  'ILS',
+  'INR',
+  'ISK',
+  'JPY',
+  'KRW',
+  'MXN',
+  'MYR',
+  'NOK',
+  'NZD',
+  'PHP',
+  'PLN',
+  'RON',
+  'SEK',
+  'SGD',
+  'THB',
+  'TRY',
+  'UAH',
+  'USD',
+  'ZAR',
+];
+
 const CurrencySelect = ({ selectedCurrency, handleCurrency }) => {
   const countryCode = selectedCurrency.substring(0, 2);
-  const [currencyCodes, setCurrencyCodes] = useState([]);
+  // const [currencyCodes, setCurrencyCodes] = useState([]);
 
-  const currencyCodesAPI = async () => {
-    const API_URL_CODES = `https://api.nbp.pl/api/exchangerates/tables/a/`;
+  // const currencyCodesAPI = async () => {
+  //   const API_URL_CODES = `https://api.nbp.pl/api/exchangerates/tables/a/`;
 
-    try {
-      const response = await fetch(API_URL_CODES);
-      if (!response.ok) throw Error('Something went wrong!');
-      const data = await response.json();
-      let currencyCodes = [];
-      data[0].rates.forEach((element) => {
-        currencyCodes.push(element.code);
-      });
-      currencyCodes.push('PLN');
-      currencyCodes = currencyCodes.filter((el) => el !== 'XDR');
-      const sortedCodes = currencyCodes.sort();
-      setCurrencyCodes(sortedCodes);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //   try {
+  //     const response = await fetch(API_URL_CODES);
+  //     if (!response.ok) throw Error('Something went wrong!');
+  //     const data = await response.json();
+  //     let currencyCodes = [];
+  //     data[0].rates.forEach((element) => {
+  //       currencyCodes.push(element.code);
+  //     });
+  //     currencyCodes.push('PLN');
+  //     currencyCodes = currencyCodes.filter((el) => el !== 'XDR');
+  //     const sortedCodes = currencyCodes.sort();
+  //     setCurrencyCodes(sortedCodes);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => currencyCodesAPI, []);
+  // useEffect(() => currencyCodesAPI, []);
+  // console.log(currencyCodes);
 
   return (
     <div className="form__currency-select currency-select">
