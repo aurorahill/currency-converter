@@ -1,5 +1,5 @@
-import './App.css';
-import ConverterForm from './components/ConverterForm';
+import "./App.css";
+import { ConverterForm } from "./components/ConverterForm/ConverterForm";
 
 function App() {
   return (
