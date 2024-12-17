@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import CurrencySelect from './CurrencySelect';
+import CurrencySelect from '../CurrencySelect/CurrencySelect';
+import SwapIcon from '../../assets/icons/SwapIcon';
+import Button from '../Button/Button';
+import Label from '../Typography/Label';
+import Paragraph from '../Typography/Paragraph';
 
 const ConverterForm = () => {
   const [fromCurrency, setFromCurrency] = useState('USD');
@@ -86,7 +90,7 @@ const ConverterForm = () => {
       onSubmit={handleFormSubmit}
     >
       <div className="form__form-group">
-        <label className="form__form-label">Enter Amount</label>
+        <Label>Enter Amount</Label>
         <input
           type="number"
           className="form__form-input"
@@ -98,7 +102,7 @@ const ConverterForm = () => {
 
       <div className="form__form-group form-currency-group">
         <div className="form__form-section">
-          <label className="form__form-label">From</label>
+          <Label>From</Label>
           <CurrencySelect
             selectedCurrency={fromCurrency}
             handleCurrency={(e) => {
@@ -110,19 +114,10 @@ const ConverterForm = () => {
           className="form__swap-icon"
           onClick={handleSwapCurrencies}
         >
-          <svg
-            width="16"
-            viewBox="0 0 20 19"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19.13 11.66H.22a.22.22 0 0 0-.22.22v1.62a.22.22 0 0 0 .22.22h16.45l-3.92 4.94a.22.22 0 0 0 .17.35h1.97c.13 0 .25-.06.33-.16l4.59-5.78a.9.9 0 0 0-.7-1.43zM19.78 5.29H3.34L7.26.35A.22.22 0 0 0 7.09 0H5.12a.22.22 0 0 0-.34.16L.19 5.94a.9.9 0 0 0 .68 1.4H19.78a.22.22 0 0 0 .22-.22V5.51a.22.22 0 0 0-.22-.22z"
-              fill="#fff"
-            />
-          </svg>
+          <SwapIcon />
         </div>
         <div className="form__form-section">
-          <label className="form__form-label">To</label>
+          <Label>To</Label>
           <CurrencySelect
             selectedCurrency={toCurrency}
             handleCurrency={(e) => {
@@ -132,17 +127,17 @@ const ConverterForm = () => {
         </div>
       </div>
 
-      <button
+      <Button
         type="submit"
         className={
           isLoading ? 'form__submit-button loading' : 'form__submit-button'
         }
       >
         Get Exchange Rate
-      </button>
-      <p className="form__exchange-rate-result">
+      </Button>
+      <Paragraph className="form__exchange-rate-result">
         {isLoading ? 'Getting exchange rate...' : result}
-      </p>
+      </Paragraph>
     </form>
   );
 };

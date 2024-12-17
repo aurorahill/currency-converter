@@ -1,40 +1,5 @@
-import { useState, useEffect } from 'react';
-
-const currencyCodes = [
-  'AUD',
-  'BGN',
-  'BRL',
-  'CAD',
-  'CHF',
-  'CLP',
-  'CNY',
-  'CZK',
-  'DKK',
-  'EUR',
-  'GBP',
-  'HKD',
-  'HUF',
-  'IDR',
-  'ILS',
-  'INR',
-  'ISK',
-  'JPY',
-  'KRW',
-  'MXN',
-  'MYR',
-  'NOK',
-  'NZD',
-  'PHP',
-  'PLN',
-  'RON',
-  'SEK',
-  'SGD',
-  'THB',
-  'TRY',
-  'UAH',
-  'USD',
-  'ZAR',
-];
+// import { useState, useEffect } from 'react';
+import { currencyCodes } from '../consts/currencyCodes';
 
 const CurrencySelect = ({ selectedCurrency, handleCurrency }) => {
   const countryCode = selectedCurrency.substring(0, 2);
