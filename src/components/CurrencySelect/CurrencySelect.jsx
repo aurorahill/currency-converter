@@ -1,4 +1,5 @@
 // import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { currencyCodes } from '../../consts/currencyCodes';
 
 const CurrencySelect = ({ selectedCurrency, handleCurrency }) => {
@@ -53,3 +54,8 @@ const CurrencySelect = ({ selectedCurrency, handleCurrency }) => {
 };
 
 export default CurrencySelect;
+
+CurrencySelect.propTypes = {
+  selectedCurrency: PropTypes.string.isRequired,
+  handleCurrency: PropTypes.func.isRequired,
+};
