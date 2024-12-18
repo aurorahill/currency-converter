@@ -5,6 +5,7 @@ import SwapIcon from '../../assets/icons/SwapIcon';
 import Button from '../Button/Button';
 import Label from '../Typography/Label';
 import Paragraph from '../Typography/Paragraph';
+import { getExchangeRateBy } from '../../api/exchangeRatesApi';
 
 const ConverterForm = () => {
   const [fromCurrency, setFromCurrency] = useState('USD');
@@ -18,60 +19,23 @@ const ConverterForm = () => {
     setToCurrency(fromCurrency);
   };
 
-  const getExchangeRate = async () => {
-    const API_URL_FROM = `https://api.nbp.pl/api/exchangerates/rates/A/${fromCurrency}/`;
-
-    const API_URL_TO = `https://api.nbp.pl/api/exchangerates/rates/A/${toCurrency}/`;
-
+  const fetchExchangeRate = async () => {
     setIsLoading(true);
-
     try {
-      if (fromCurrency === 'PLN') {
-        const value_from = 1;
-        let value_to;
-        try {
-          const response_to = await fetch(API_URL_TO);
-          if (!response_to.ok)
-            throw Error('Something went wrong with API call for value_to');
-          const data_to = await response_to.json();
-          value_to = data_to.rates[0].mid;
-        } catch (error) {
-          console.log(error);
-        }
-        const rate = ((value_from * amount) / value_to).toFixed(2);
-        setResult(`${amount} ${fromCurrency} = ${rate} ${toCurrency}`);
-      } else if (toCurrency === 'PLN') {
-        const response_from = await fetch(API_URL_FROM);
-        if (!response_from.ok)
-          throw Error('Something went wrong with API call for value_from');
+      const valueFrom =
+        fromCurrency === 'PLN' ? 1 : await getExchangeRateBy(fromCurrency);
+      const valueTo =
+        toCurrency === 'PLN' ? 1 : await getExchangeRateBy(toCurrency);
 
-        const data_from = await response_from.json();
-        const value_from = data_from.rates[0].mid;
-        const value_to = 1;
-        const rate = ((value_from * amount) / value_to).toFixed(2);
+      if (valueFrom && valueTo) {
+        const rate = ((valueFrom * amount) / valueTo).toFixed(2);
         setResult(`${amount} ${fromCurrency} = ${rate} ${toCurrency}`);
       } else {
-        const response_from = await fetch(API_URL_FROM);
-        if (!response_from.ok)
-          throw Error('Something went wrong with API call for value_from');
-
-        const data_from = await response_from.json();
-        const value_from = data_from.rates[0].mid;
-        let value_to;
-        try {
-          const response_to = await fetch(API_URL_TO);
-          if (!response_to.ok)
-            throw Error('Something went wrong with API call for value_to');
-          const data_to = await response_to.json();
-          value_to = data_to.rates[0].mid;
-        } catch (error) {
-          console.log(error);
-        }
-        const rate = ((value_from * amount) / value_to).toFixed(2);
-        setResult(`${amount} ${fromCurrency} = ${rate} ${toCurrency}`);
+        setResult('Error calculating exchange rate.');
       }
     } catch (error) {
-      console.log(error);
+      console.log('Error durin rate calculation: ', error);
+      setResult('Error calculating exchange rate.');
     } finally {
       setIsLoading(false);
     }
@@ -79,10 +43,10 @@ const ConverterForm = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    getExchangeRate();
+    fetchExchangeRate();
   };
 
-  useEffect(() => getExchangeRate, []);
+  useEffect(() => fetchExchangeRate, []);
 
   return (
     <form
