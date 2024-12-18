@@ -1,5 +1,5 @@
 // import { useState, useEffect } from 'react';
-import { currencyCodes } from '../consts/currencyCodes';
+import { currencyCodes } from '../../consts/currencyCodes';
 
 const CurrencySelect = ({ selectedCurrency, handleCurrency }) => {
   const countryCode = selectedCurrency.substring(0, 2);
