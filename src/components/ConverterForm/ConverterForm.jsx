@@ -8,15 +8,15 @@ import useConverterForm from './useConverterForm';
 const ConverterForm = () => {
   const {
     amount,
-    buttonDynamicClassName,
+    toCurrency,
     formResult,
     fromCurrency,
+    buttonDynamicClassName,
+    setAmount,
+    setToCurrency,
+    setFromCurrency,
     handleFormSubmit,
     handleSwapCurrencies,
-    toCurrency,
-    setAmount,
-    setFromCurrency,
-    setToCurrency,
   } = useConverterForm();
 
   return (
