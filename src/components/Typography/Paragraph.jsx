@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 const Paragraph = ({ children, className }) => {
   return <p className={className}>{children}</p>;
 };

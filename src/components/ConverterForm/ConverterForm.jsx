@@ -1,9 +1,9 @@
-import CurrencySelect from '../CurrencySelect/CurrencySelect';
-import SwapIcon from '../../assets/icons/SwapIcon';
-import Button from '../Button/Button';
-import Label from '../Typography/Label';
-import Paragraph from '../Typography/Paragraph';
-import useConverterForm from './useConverterForm';
+import CurrencySelect from "../CurrencySelect/CurrencySelect";
+import SwapIcon from "../../assets/icons/SwapIcon";
+import Button from "../Button/Button";
+import Label from "../Typography/Label";
+import Paragraph from "../Typography/Paragraph";
+import useConverterForm from "./useConverterForm";
 
 const ConverterForm = () => {
   const {

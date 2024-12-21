@@ -1,6 +1,6 @@
 // import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { currencyCodes } from '../../consts/currencyCodes';
+import PropTypes from "prop-types";
+import { currencyCodes } from "../../consts/currencyCodes";
 
 const CurrencySelect = ({ selectedCurrency, handleCurrency }) => {
   const countryCode = selectedCurrency.substring(0, 2);
