@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-const Label = ({ children, className = "form__form-label" }) => {
+import styles from "./Label.module.scss";
+const Label = ({ children, className = styles["form-label"] }) => {
   return <label className={className}>{children}</label>;
 };
 

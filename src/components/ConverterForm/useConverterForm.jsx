@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { getExchangeRateBy } from "../../api/exchangeRatesApi";
+import styles from "../Button/Button.module.scss";
 
 const useConverterForm = () => {
   const [fromCurrency, setFromCurrency] = useState("USD");
@@ -9,8 +10,8 @@ const useConverterForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const formResult = isLoading ? "Getting exchange rate..." : result;
   const buttonDynamicClassName = isLoading
-    ? "form__submit-button loading"
-    : "form__submit-button";
+    ? `${styles["submit-button"]} ${styles["loading"]}`
+    : styles["submit-button"];
 
   const handleSwapCurrencies = () => {
     setFromCurrency(toCurrency);

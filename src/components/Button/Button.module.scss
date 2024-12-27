@@ -1,0 +1,18 @@
+.submit-button {
+  width: 100%;
+  min-height: 5rem;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  &.loading {
+    opacity: 0.8;
+    pointer-events: none;
+  }
+  &:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+}

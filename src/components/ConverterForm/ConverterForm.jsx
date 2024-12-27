@@ -4,6 +4,7 @@ import Button from "../Button/Button";
 import Label from "../Typography/Label";
 import Paragraph from "../Typography/Paragraph";
 import useConverterForm from "./useConverterForm";
+import styles from "./ConverterForm.module.scss";
 
 const ConverterForm = () => {
   const {
@@ -21,22 +22,22 @@ const ConverterForm = () => {
 
   return (
     <form
-      className="converter__form form"
+      className={`${styles.form}`}
       onSubmit={handleFormSubmit}
     >
-      <div className="form__form-group">
+      <div className={`${styles["form__form-group"]}`}>
         <Label>Enter Amount</Label>
         <input
           type="number"
-          className="form__form-input"
+          className={`${styles["form__form-input"]}`}
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           required
         />
       </div>
 
-      <div className="form__form-group form-currency-group">
-        <div className="form__form-section">
+      <div className={`${styles["form__currency-group"]}`}>
+        <div className={`${styles["form__form-section"]}`}>
           <Label>From</Label>
           <CurrencySelect
             selectedCurrency={fromCurrency}
@@ -46,12 +47,12 @@ const ConverterForm = () => {
           />
         </div>
         <div
-          className="form__swap-icon"
+          className={`${styles["form__swap-icon"]}`}
           onClick={handleSwapCurrencies}
         >
           <SwapIcon />
         </div>
-        <div className="form__form-section">
+        <div className={`${styles["form__form-section"]}`}>
           <Label>To</Label>
           <CurrencySelect
             selectedCurrency={toCurrency}
@@ -68,7 +69,9 @@ const ConverterForm = () => {
       >
         Get Exchange Rate
       </Button>
-      <Paragraph className="form__exchange-rate-result">{formResult}</Paragraph>
+      <Paragraph className={`${styles["form__exchange-rate-result"]}`}>
+        {formResult}
+      </Paragraph>
     </form>
   );
 };
