@@ -38,7 +38,7 @@ const useConverterForm = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [fromCurrency, toCurrency, amount]);
+  }, [fromCurrency, toCurrency]);
 
   useEffect(() => {
     fetchExchangeRate;
